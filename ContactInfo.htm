@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <meta charset="utf-8">     
+        <title>Create Account</title>
+        <link rel="stylesheet" type="text/css" href="contacts.css">  
+    </head>
+    <body>
+        <header></header>
+        <main>
+            <section id="contactDetails">
+                <h2>Create Account</h2>
+                <form action="result.htm" method="get" class="form" id="form">
+                    <div class="form-control">
+                        <label for="username">Contact name</label>
+                        <input type="text" placeholder="luongthithanhvan" id="username" name="username"/>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+
+                    </div>
+
+                    <div class="form-control">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="abc@testing.com"/>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+
+                    </div>
+
+                   <div class="form-control">
+                       <label for="password">Password</label>
+                       <input type="password" placeholder="password" id="password" name="password" />
+                       <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                   </div>
+
+                   <div class="form-control">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" placeholder="confirm password" id="password2" name="password2" />
+                    <i class="fas fa-check-circle"></i>
+                     <i class="fas fa-exclamation-circle"></i>
+                     <small>Error message</small>
+                </div>
+
+                <div class="form-control">
+                        <label for="companyName">Company name</label>
+                        
+                        <select name="companyName" id="companyName" class="validated">
+                            <option value="">Please select</option>
+                            <option value="ABC Incorporated">ABC Incorporated</option>
+                            <option value="XZY Ltd">XZY Ltd</option>
+                            <option value="ACME International">ACME International</option>
+                        </select>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                        
+                 </div>
+
+                    <div class="form-control">
+                        <button>Submit</button>
+                    </div>
+
+                </form>
+
+            </section>
+
+
+        </main>
+        <footer></footer>
+
+        <script>
+            const form = document.getElementById('form');
+            const username = document.getElementById('username');
+            const password = document.getElementById('password');
+            const email = document.getElementById('email');
+            const password2 = document.getElementById('password2');
+            const companyName = document.getElementById('companyName');
+
+            //SYNTAX: catch event in JAvascript
+            //WAY 1: Catch directly in HTML
+            //ex: <li><a href="#" onclick="do_something()">Tin thời sự</a></li>
+            //function do_something(){
+                 //alert('Bạn đã click vào nút này!');
+            //}
+
+            //WAY 2: eventName:onclick, onchange, ..
+            //var elementObject= document.getElementById("");
+            //elementObject.eventName  = function(){
+                   // do something 
+            //};
+
+
+            //WAY 3: eventName: click, change (THROW the word "on")
+            //SYNTAX addEventListener() for a button: 
+            //elementObject.addEventListener('eventName', function(e){
+                   // do something
+            //})
+
+            form.addEventListener('submit', (e) => {
+            
+                checkInputs();
+                
+                if(isFormValid() == true)
+                {
+                    form.submit();
+                    
+
+                }
+                else
+                {
+                     //prevent us from submitting the form
+                     e.preventDefault();
+
+                }
+            });
+
+            //stop submitting if form contains wrong input
+            function isFormValid()
+            {
+                // use the querySelector() method to select the div
+                const inputContainers = form.querySelectorAll(".form-control");
+                let result = true;
+                inputContainers.forEach((container)=>{
+                    // use the contains() method to check if its class list contains a class "error"
+                    //SYNTAX: element.classList.contains() method to check if an element contains a specific CLASS NAME.
+                    if(container.classList.contains("error"))//not submit
+                    {
+                        result = false;
+                    }
+                });
+                return result;
+            }
+
+            function checkInputs()
+            {
+                //get values from the inputs
+                const usernameValue = username.value.trim();
+                const emailValue = email.value.trim();
+                const passwordValue = password.value.trim();
+                const password2Value = password2.value.trim();
+                const companyNameValue = companyName.value;
+
+                //Check username
+                if(usernameValue === "")
+                {
+                    //show error
+                    setErrorFor(username, "Username cannot be blank")
+
+                    //alert('rong');
+                }
+                else
+                {
+                    //add success class
+                    setSuccessFor(username);
+                    //alert('thanh cong');
+                }
+
+                //check email
+                if(emailValue == "")
+                {
+                    setErrorFor(email, "Email cannot be blank");
+                }
+                else if(!isEmail(emailValue))
+                {
+                   setErrorFor(email, "Email is not valid");
+                }
+                else{
+                    setSuccessFor(email);
+                }
+
+                //check password
+                if(passwordValue == "")
+                {
+                    setErrorFor(password, "Password cannot be blank");
+                }
+                else if(passwordValue.length < 8)
+                {
+                    setErrorFor(password, "Password length must be at least 8 characters");
+                }
+                else if(passwordValue.length > 15)
+                {
+                    setErrorFor(password, "Password length must not exceed 15 characters");
+                }
+                else
+                {
+                    setSuccessFor(password);
+
+                }
+
+                //check confirm password
+                if(password2Value == "")
+                {
+                    setErrorFor(password2, "Password2 cannot be blank");
+                }
+                else if(passwordValue != password2Value)
+                {
+                    setErrorFor(password2, "Password does not match. Try again!!!");
+                }
+                else
+                {
+                    setSuccessFor(password2);
+
+                }
+
+                //check company name
+                if(companyNameValue == "")
+                {
+                    setErrorFor(companyName, "You have to select one");
+                }
+                else
+                {
+                    setSuccessFor(companyName);
+                }
+
+                
+
+            }
+
+            function setErrorFor(input, message) //JavaScript function definitions do not specify data types for parameters.
+            {
+                const formControl = input.parentElement;  //.form-control
+                
+                // document.querySelector(CSS selectors)    
+                const small = formControl.querySelector('small');
+
+                //add error message inside 'small' tag
+                small.innerText = message;
+
+                //add error class so icon, error from css attribute could be UPDATED
+                formControl.className='form-control error';
+                
+            }
+
+            function setSuccessFor(input)
+            {
+                const formControl = input.parentElement;  //.form-control
+
+                //add success class
+                formControl.className='form-control success';
+            }
+
+            //Check email validity
+            function isEmail(email)
+            {
+                return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+            }
+
+            
+          
+
+
+        </script>
+    </body>
+</html>

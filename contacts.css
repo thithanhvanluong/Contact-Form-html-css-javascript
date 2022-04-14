@@ -1,0 +1,198 @@
+/*.validated:valid
+{
+	background-color: lightgreen;
+}
+.validated:invalid
+{
+	background-color: lightpink;
+
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	color: #333333;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding:5px;
+}
+
+thead {
+	background: #3056A0;
+	color: white;
+}
+
+table > caption {
+	font-weight: bold;
+}
+
+tfoot {
+	font-size: 0.75em;
+	text-align:right;
+}
+
+tbody tr:nth-child(even) {
+	background: #E6E6F5;
+}
+
+header {
+	background: #3056A0;
+	color: white;
+	text-align:center;
+	line-height: 70px;	
+	font-size: 3em;
+}
+
+#contactDetails, #contactList {
+	border: 1px solid #999999;
+	margin: 15px;
+	padding:15px;
+}
+
+label {
+	width:150px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+input {
+	width:200px;
+}
+
+.formRow {
+	margin-bottom:10px;
+}
+
+footer {
+	line-height:40px;
+	background: #3056A0;
+	color: white;
+	text-align:center;
+	font-size: 0.8em;
+}
+
+#submit {
+	width:100px;
+	@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+	
+}*/
+
+body{
+	background-color: #9b59b6;
+	display: flex;
+	align-items: center;
+	font-family: "Open";
+	justify-content: center;
+	min-height: 100vh;
+	margin:0;
+	font-family: "Open Sans", sans-serif;
+	margin: 0;
+	color: #333333;
+	margin: 0;
+    padding: 0;
+}
+
+#contactDetails
+{
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rbga(0, 0, 0, 0.3);
+	width: 500px;
+	max-width: 100%;
+
+}
+h2 {
+	background: #3056A0;
+	color: white;
+	text-align:center;
+	line-height: 70px;	
+	font-size: 3em;
+	padding: 10px 40px;
+}
+.form{
+	padding: 30px 40px;
+}
+
+.form-control
+{
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+	position: relative;
+
+}
+
+.form-control label
+{
+	display: inline-block;
+	margin-bottom: 5px;
+
+}
+.form-control input
+{
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+	font-family: inherit;
+}
+.form-control.success input
+{
+	border-color: #2ecc71;
+}
+
+.form-control.error input
+{
+	border-color: #e74c3c;
+	
+
+}
+.form-control i
+{
+	visibility: hidden;
+	position: absolute;
+	top: 40px;
+	right: 10px;
+
+}
+.form-control.success i.fa-check-circle
+{
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle
+{
+	color: #e74c3c;
+	visibility: visible;
+}
+.form-control small
+{
+	visibility: hidden;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.form-control.error small
+{
+	visibility: visible;
+	color: #e74c3c;
+}
+
+.form-control button
+{
+	background-color: #8e44ad;
+	border: 2px solid #8e44ad;
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
+	width: 100%;
+
+}

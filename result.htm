@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Result</title>
+    </head>
+    <body>
+        <p id="paragraph"></p>
+        <a href="ContactInfo.htm">Go Back To Create Account Page</a>
+        <script>
+            const paragraph = document.querySelector("#paragraph");
+            //SYNTAX: window.location.search to get query string of current URL (ex: "?user=trieu-quan-su&place=quan-net&place=rung")
+            //An object implementing URLSearchParams can directly be used in a for...of structure 
+            //to iterate over key/value pairs in the same order as they appear in the query string
+            const params = new URLSearchParams(window.location.search);
+
+            //SYNTAX: URLSearchParams.forEach() allows iteration through all values contained in this object via a callback function.
+            params.forEach((value,key)=>{
+                paragraph.append(`${key} = ${value}`);
+                //get another new line
+                paragraph.append(document.createElement('br'));
+                
+            });
+            alert("CONGRATULATION. You've succeeded in creating account on our page!!!");
+        </script>
+    </body>
+</html>
